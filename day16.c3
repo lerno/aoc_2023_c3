@@ -97,10 +97,10 @@ fn void trace_beam(List(<LightBeam>)* beams, LightBeam beam, Map map, Map light_
 					velocity = DIRECTION_FROM_VALUE[direction = SOUTH];
 				}
 			case '-':
-				// Split if comving from north or south.
+				// Split if coming from north or south.
 				if (direction == NORTH || direction == SOUTH)
 				{
-					// Deal with the wet beam later
+					// Deal with the west beam later
 					beams.append({ location + { -1, 0 }, WEST });
 					// Trace the east beam.
 					velocity = DIRECTION_FROM_VALUE[direction = EAST];
