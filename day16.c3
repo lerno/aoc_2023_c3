@@ -22,7 +22,7 @@ fn void main()
 // Let's build a map with operator overloading, this is actually borrowed from day 14
 struct Map
 {
-	char[200][] data;
+	char[128][] data;
 	int width;
 }
 
@@ -34,7 +34,7 @@ fn Map load_global_map()
 {
 	File f = file::open("day16.txt", "rb")!!;
 	defer (void)f.close();
-	static char[200][200] map_buffer;
+	static char[128][128] map_buffer;
 	// Load the file into memory
     int height = 0;
     int width @noinit;
@@ -43,6 +43,7 @@ fn Map load_global_map()
     	width = line.len;
     	map_buffer[height++][0:line.len] = line;
     }
+	assert(height < 128 && width < 128);
 
     return { map_buffer[:height], width };
 }
@@ -137,7 +138,7 @@ fn void trace_beam(List(<LightBeam>)* beams, LightBeam beam, Map map, Map light_
 fn int calculate_energized_tiles(Map map, LightBeam beam)
 {
 	// Create a light map.
-	char[200][200] light_buffer;
+	char[128][128] light_buffer;
     Map light_map = { light_buffer[:map.len()], map.width };
 
     // Keep a list of beams to process
@@ -171,27 +172,33 @@ fn long part1(Map map)
 
 fn int part2(Map map)
 {
-    int height = map.len();
-    int width = map.width;
+    ichar height = (ichar)map.len();
+    ichar width = (ichar)map.width;
     int max = 0;
 
     // Look for max north and south, by tracing from the bottom and top.
-    for (int i = 0; i < width; i++)
+    for (ichar i = 0; i < width; i++)
     {
-        max = math::max(
-            max,
-            calculate_energized_tiles(map, { { (ichar)i, 0 }, SOUTH }),
-            calculate_energized_tiles(map, { { (ichar)i, (ichar)height - 1 }, NORTH })
-        );
+        @pool()
+        {
+	        max = math::max(
+                max,
+                calculate_energized_tiles(map, { { i, 0 }, SOUTH }),
+                calculate_energized_tiles(map, { { i, height - 1 }, NORTH })
+            );
+        };
     }
     // Look for max east and west by tracing from left and right.
-    for (int i = 0; i < height; i++)
+    for (ichar i = 0; i < height; i++)
     {
-        max = math::max(
-            max,
-            calculate_energized_tiles(map, { { 0, (ichar)i }, EAST }),
-            calculate_energized_tiles(map, { { (ichar)width - 1, (ichar)i }, WEST })
-        );
+        @pool()
+        {
+	        max = math::max(
+	            max,
+	            calculate_energized_tiles(map, { { 0, i }, EAST }),
+	            calculate_energized_tiles(map, { { width - 1, i }, WEST })
+	        );
+	    };
     }
     // Return the max
     return max;
