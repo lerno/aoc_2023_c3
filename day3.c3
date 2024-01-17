@@ -33,7 +33,7 @@ fn void main()
 
 fn int part1()
 {
-	gear_list.init_temp();
+	gear_list.temp_init();
 	return scan_schematic();
 }
 
@@ -54,7 +54,7 @@ fn int scan_schematic()
 	File f = file::open("day3.txt", "rb")!!;
 	defer (void)f.close();
 	StringList list;
-	list.init_temp();
+	list.temp_init();
 	// Read every line into a dynamic list.
 	while (try line = io::treadline(&f)) list.append(line);
 	// I prefer using the view, but the list can be used as

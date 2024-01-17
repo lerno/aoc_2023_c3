@@ -160,8 +160,8 @@ fn int part2(Map map)
 	int[<2>] start = { 1, 1 };
 	int[<2>] end = { map.width - 2, map.data.len - 1 };
 	// Create the first and last intersection.
-	Intersection* first = mem::new_temp(Intersection);
-	Intersection* last = mem::new_temp(Intersection);
+	Intersection* first = mem::temp_new(Intersection);
+	Intersection* last = mem::temp_new(Intersection);
 	*first = { .pos = start };
 	*last = { .pos = end };
 
@@ -248,8 +248,7 @@ fn int part2(Map map)
 				// An intersection was found!
 				// Built it and add it to the map
 				// In the next loop we will automatically connect it.
-				Intersection* sec = mem::new_temp(Intersection);
-				*sec = { .pos = current };
+				Intersection* sec = mem::temp_new(Intersection, { .pos = current });
 				intersection_map.set(current, sec);
 				list.append(sec);
 			}

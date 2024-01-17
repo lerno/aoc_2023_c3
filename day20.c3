@@ -77,7 +77,7 @@ fn Configuration load_configuration()
 		assert(target_names.len > 0);
 
 		// Create an array of targets
-		char[] targets = mem::temp_array(char, target_names.len);
+		char[] targets = mem::temp_alloc_array(char, target_names.len);
 		foreach (i, target_name : target_names)
 		{
 			// Get the mapping, if none exists -> END_TARGET

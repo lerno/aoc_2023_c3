@@ -65,14 +65,14 @@ fn long part2()
 	defer (void)f.close();
 	long winnings;
 	List(<int>) matches;
-	matches.init_temp(1024);
+	matches.temp_init(1024);
 	// Store all the matches in a single sweep.
 	while (try line = io::treadline(&f))
 	{
 		matches.append(matches_for_line(line));
 	}
 	// Create an array to store the cards, where zero = 1 card
-	int[] cards = mem::temp_zero_array(int, matches.len());
+	int[] cards = mem::temp_alloc_array(int, matches.len());
 	long total_cards;
 	foreach (i, copies : cards)
 	{

@@ -26,7 +26,7 @@ fn void main()
 fn SettingsList read_settings(File* f)
 {
 	SettingsList list;
-	list.init_temp(64);
+	list.temp_init(64);
 	// We start a temp pool here.
 	@pool()
 	{
@@ -134,7 +134,7 @@ fn long part1()
 	File f = file::open("day5.txt", "rb")!!;
 	defer (void)f.close();
 	LongList seeds;
-	seeds.init_temp(128);
+	seeds.temp_init(128);
 	String numbers = io::treadline(&f)!!.tsplit(": ")[1];
 	foreach (num : numbers.tsplit(" "))
 	{
@@ -156,7 +156,7 @@ fn long part2()
 	File f = file::open("day5.txt", "rb")!!;
 	defer (void)f.close();
 	SeedRangeList seeds;
-	seeds.init_temp(128);
+	seeds.temp_init(128);
 	String[] numbers = io::treadline(&f)!!.tsplit(": ")[1].tsplit(" ");
 	// Load ranges
 	for (int i = 0 ; i < numbers.len; i += 2)

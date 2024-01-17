@@ -35,7 +35,7 @@ fn long part1()
 
 	// Setup the mapping
 	LocationMap map;
-	map.init_temp(2048);
+	map.temp_init(2048);
 
 	// Load all mappings.
 	while (try line = io::treadline(&f))
@@ -108,7 +108,7 @@ fn long part2()
 
 	// Our tree map.
 	LocationMap map;
-	map.init_temp(2048);
+	map.temp_init(2048);
 
 	// A hundred should be plenty.
 	Location[100] locs_buffer;

@@ -103,7 +103,7 @@ macro int dir_len_idx(Dir dir, int dir_len)
 fn int solve(int[<2>] size, int min_move, int max_move)
 {
 	// Allocate a 3D array (although it's actually 4D)
-	DirLen[200][200]* vmap = mem::new_temp(DirLen[200][200]);
+	DirLen[200][200]* vmap = mem::temp_new(DirLen[200][200]);
 
 	// Create a priority queue. Note that 0.5.1 has a bug preventing
 	// this from properly working(!)

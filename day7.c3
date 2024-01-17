@@ -225,7 +225,7 @@ fn long part1()
 	File f = file::open("day7.txt", "rb")!!;
 	defer (void)f.close();
 	HandBidList list;
-	list.init_temp(1024);
+	list.temp_init(1024);
 	// Parse hands
 	while (try line = io::treadline(&f))
 	{
@@ -241,7 +241,7 @@ fn long part2()
 	File f = file::open("day7.txt", "rb")!!;
 	defer (void)f.close();
 	HandBidList list;
-	list.init_temp(1024);
+	list.temp_init(1024);
 	// Parse hands
 	while (try line = io::treadline(&f))
 	{

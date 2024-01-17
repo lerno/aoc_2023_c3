@@ -85,17 +85,16 @@ fn List(<Brick*>) create_and_simulate_bricks()
 		int[<3>] from = string_to_coord(parts[0]);
 		int[<3>] to = string_to_coord(parts[1]);
 		int[<3>] start = math::min(from, to);
-		Brick* brick = mem::new_temp(Brick);
-		*brick = { .id = (int)bricks.len() + 1, .start = start, .end = start + math::abs(from - to)};
+			Brick* brick = mem::temp_new(Brick, { .id = (int)bricks.len() + 1, .start = start, .end = start + math::abs(from - to)});
 		// Init the two internal lists.
-		brick.supports.init_temp();
-		brick.supported_by.init_temp();
+		brick.supports.temp_init();
+		brick.supported_by.temp_init();
 		// Add the brick.
 		bricks.append(brick);
 	}
 	// Keep track of supporters
 	List(<Brick*>) supporters;
-	supporters.init_temp();
+	supporters.temp_init();
 	// Sort the bricks
 	quicksort(bricks);
 	foreach (i, b : bricks)

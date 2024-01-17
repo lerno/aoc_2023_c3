@@ -26,7 +26,7 @@ fn long calculate(int expansion)
 	defer (void)f.close();
 	// We keep a list of our coordinates.
 	CoordList list;
-	list.init_temp(1000);
+	list.temp_init(1000);
 	int width @noinit;
 	int y;
 	// 200 should be good enough.
