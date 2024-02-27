@@ -98,7 +98,7 @@ fn void parse_rule(RuleList* list, String line)
 	r.else_name = split[^1];
 	r.else_ptr = default_rule_ptr(r.else_name);
 	// And add the rule.
-	list.append(r);
+	list.push(r);
 }
 
 // In post processing, patch up the links to avoid having to do a hashmap lookup
@@ -213,7 +213,7 @@ fn void apply_range(RuleSet* rule, RangeList* list, long[4] start, long[4] end)
 	// If it's the accept rule, add it to valid ranges.
 	if (rule == &a_rule)
 	{
-		list.append({start, end});
+		list.push({start, end});
 		return;
 	}
 

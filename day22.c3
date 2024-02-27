@@ -90,7 +90,7 @@ fn List(<Brick*>) create_and_simulate_bricks()
 		brick.supports.temp_init();
 		brick.supported_by.temp_init();
 		// Add the brick.
-		bricks.append(brick);
+		bricks.push(brick);
 	}
 	// Keep track of supporters
 	List(<Brick*>) supporters;
@@ -120,13 +120,13 @@ fn List(<Brick*>) create_and_simulate_bricks()
 				max_collision = collide;
 			}
 			// Add to the list of supporters
-			supporters.append(o);
+			supporters.push(o);
 		}
 		// Fix our list of supporters / suppported by
 		foreach (o : supporters)
 		{
-			o.supports.append(b);
-			b.supported_by.append(o);
+			o.supports.push(b);
+			b.supported_by.push(o);
 		}
 		assert(max_collision == 0 || supporters.len() > 0);
 		// Uppdate z

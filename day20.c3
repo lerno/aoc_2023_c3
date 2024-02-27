@@ -93,7 +93,7 @@ fn Configuration load_configuration()
 			continue;
 		}
 		// Create and add a module.
-		modules.append({ .is_flip = name[0] == '%', .targets = targets });
+		modules.push({ .is_flip = name[0] == '%', .targets = targets });
 	}
 	// We're going to assume 0 or 1 end targets.
 	assert(end_targets < 2);
@@ -172,7 +172,7 @@ fn long part1(Configuration conf)
 		// broadcast low pulses
 		foreach (j : conf.broadcaster)
 		{
-			signal_lists[0].append({ j, LOW_PULSE, BROADCAST });
+			signal_lists[0].push({ j, LOW_PULSE, BROADCAST });
 			result[0]++;
 		}
 
@@ -235,7 +235,7 @@ fn long part1(Configuration conf)
 				foreach (target : m.targets)
 				{
 					result[pulse_out]++;
-					write_list.append({ target, pulse_out, signal.to });
+					write_list.push({ target, pulse_out, signal.to });
 				}
 			}
 			// Clear the used list
@@ -264,7 +264,7 @@ fn usz detect_period(Configuration conf, char module_idx)
 		// broadcast low pulses
 		foreach (j : conf.broadcaster)
 		{
-			signal_lists[0].append({ j, LOW_PULSE, BROADCAST });
+			signal_lists[0].push({ j, LOW_PULSE, BROADCAST });
 		}
 
 		// This follows part 1
@@ -314,7 +314,7 @@ fn usz detect_period(Configuration conf, char module_idx)
 				}
 				foreach (target : m.targets)
 				{
-					write_list.append({ target, pulse_out, signal.to });
+					write_list.push({ target, pulse_out, signal.to });
 				}
 			}
 			signal_lists[current_list].clear();

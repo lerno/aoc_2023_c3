@@ -231,7 +231,7 @@ fn long part1()
 	{
 		String hand = line[:5];
 		long bid = line[6..].to_long()!!;
-		list.append({ create_hand(hand), bid });
+		list.push({ create_hand(hand), bid });
 	}
 	return calculate_score(list);
 }
@@ -247,7 +247,7 @@ fn long part2()
 	{
 		String hand = line[:5];
 		long bid = line[6..].to_long()!!;
-		list.append({ create_joker_hand(hand), bid });
+		list.push({ create_joker_hand(hand), bid });
 	}
 	return calculate_score(list);
 }

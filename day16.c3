@@ -93,7 +93,7 @@ fn void trace_beam(List(<LightBeam>)* beams, LightBeam beam, Map map, Map light_
 				if (direction == WEST || direction == EAST)
 				{
 					// Deal with the north beam later.
-					beams.append({ location + { 0, -1 }, NORTH });
+					beams.v({ location + { 0, -1 }, NORTH });
 					// Trace the south beam.
 					velocity = DIRECTION_FROM_VALUE[direction = SOUTH];
 				}
@@ -102,7 +102,7 @@ fn void trace_beam(List(<LightBeam>)* beams, LightBeam beam, Map map, Map light_
 				if (direction == NORTH || direction == SOUTH)
 				{
 					// Deal with the west beam later
-					beams.append({ location + { -1, 0 }, WEST });
+					beams.push({ location + { -1, 0 }, WEST });
 					// Trace the east beam.
 					velocity = DIRECTION_FROM_VALUE[direction = EAST];
 				}
@@ -146,7 +146,7 @@ fn int calculate_energized_tiles(Map map, LightBeam beam)
 	beams.init_temp();
 
 	// Append the first beam
-	beams.append(beam);
+	beams.push(beam);
 
 	// While we have beams, trace them.
 	while (beams.len())

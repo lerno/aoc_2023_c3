@@ -46,7 +46,7 @@ fn HailstoneList load_hailstones()
     while (try line = io::treadline(&f))
     {
 		String[] parts = line.tsplit(" @ ");
-		list.append({ parse_vector(parts[0]), parse_vector(parts[1] )});
+		list.push({ parse_vector(parts[0]), parse_vector(parts[1] )});
     }
     return list;
 }

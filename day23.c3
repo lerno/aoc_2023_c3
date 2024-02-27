@@ -83,7 +83,7 @@ fn int part1(Map map)
 	List(<Search>) list;
 	list.init_temp();
 	// Start with the initial location.
-	list.append({ start, 1, SOUTH });
+	list.push({ start, 1, SOUTH });
 	while OUTER: (list.len())
 	{
 		// Pop the search location off the stack.
@@ -121,7 +121,7 @@ fn int part1(Map map)
 				// then put this search in the list.
 				if (next != { 0, 0 })
 				{
-					list.append({ loc, cost + 1, dir });
+					list.push({ loc, cost + 1, dir });
 					continue;
 				}
 				// Update the possible next dir.
@@ -177,7 +177,7 @@ fn int part2(Map map)
 	list.init_temp();
 
 	// Add the first intersection to this list.
-	list.append(first);
+	list.push(first);
 
 	while OUTER: (list.len())
 	{
@@ -250,7 +250,7 @@ fn int part2(Map map)
 				// In the next loop we will automatically connect it.
 				Intersection* sec = mem::temp_new(Intersection, { .pos = current });
 				intersection_map.set(current, sec);
-				list.append(sec);
+				list.push(sec);
 			}
 		}
 	}

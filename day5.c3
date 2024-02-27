@@ -43,7 +43,7 @@ fn SettingsList read_settings(File* f)
 			// Split and parse
 			foreach (i, num : line.tsplit(" ")) rule[i] = num.to_long()!!;
 			// Append the rule
-			list.append(rule);
+			list.push(rule);
 		}
 	};
 	return list;
@@ -104,21 +104,21 @@ fn void transform_range(SettingsList* list, SeedRangeList* seeds)
 				case seed[0] < source && seed[1] < source_end:
 					long[<2>] unchanged_seed = { seed[0], source - 1 };
     				seed = { source, seed[1] };
-    				seeds.append(unchanged_seed);
+    				seeds.push(unchanged_seed);
     				seeds_len++;
 				// ***===
     			case seed[0] >= source && seed[1] >= source_end:
 					long[<2>] unchanged_seed = { source_end, seed[1] };
 					seed = { seed[0], source_end - 1 };
-					seeds.append(unchanged_seed);
+					seeds.push(unchanged_seed);
 					seeds_len++;
 				// ===***===
 				default:
 					long[<2>] unchanged_seed1 = { seed[0], source - 1 };
 					long[<2>] unchanged_seed2 = { source_end, seed[1] };
 					seed = { source, source_end - 1 };
-					seeds.append(unchanged_seed1);
-					seeds.append(unchanged_seed2);
+					seeds.push(unchanged_seed1);
+					seeds.push(unchanged_seed2);
 					seeds_len += 2;
 			}
 			// Update the transformed part, using vector ops.
@@ -138,7 +138,7 @@ fn long part1()
 	String numbers = io::treadline(&f)!!.tsplit(": ")[1];
 	foreach (num : numbers.tsplit(" "))
 	{
-		seeds.append(num.to_long()!!);
+		seeds.push(num.to_long()!!);
 	}
 	io::treadline(&f)!!;
 	for (int i = 0; i < 7; i++)
@@ -164,7 +164,7 @@ fn long part2()
 		// Inclusive ranges
 		long start = numbers[i].to_long()!!;
 		long end = numbers[i + 1].to_long()!! + start;
-		seeds.append({ start, end });
+		seeds.push({ start, end });
 	}
 	io::treadline(&f)!!;
 	for (int i = 0; i < 7; i++)

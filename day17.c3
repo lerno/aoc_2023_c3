@@ -106,8 +106,8 @@ fn int solve(int[<2>] size, int min_move, int max_move)
 	list.init_temp();
 
 	// Store the initial directions to test.
-	list.append({ EAST, 1, { 1, 0 }, cost({ 1, 0 }) });
-	list.append({ SOUTH, 1, { 0, 1 }, cost({ 0, 1 }) });
+	list.push({ EAST, 1, { 1, 0 }, cost({ 1, 0 }) });
+	list.push({ SOUTH, 1, { 0, 1 }, cost({ 0, 1 }) });
 
 	// While we have more to test
 	while (list.len())
@@ -164,7 +164,7 @@ fn int solve(int[<2>] size, int min_move, int max_move)
 			if (prev_cost <= loc_cost) continue;
 
 			// Add it to the open set
-			list.append({ dir, new_dir_len, new_location, loc_cost });
+			list.push({ dir, new_dir_len, new_location, loc_cost });
 		}
 	}
 

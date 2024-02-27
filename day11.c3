@@ -42,7 +42,7 @@ fn long calculate(int expansion)
 			if (c == '#')
 			{
 				// Append it to our list
-				list.append({ x, y });
+				list.push({ x, y });
 				// Also mark that this line should not expand x / y
 				found = true;
 				spaces[x] = true;

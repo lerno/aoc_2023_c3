@@ -46,7 +46,7 @@ fn long part1()
 		foreach (node : parts[1].split(" "))
 		{
 			long other = map.@get_or_set(node, (long)map.len());
-			original_list.append({ id, other });
+			original_list.push({ id, other });
 		}
 	}
 
@@ -110,8 +110,8 @@ fn long part1()
 			elements.temp_init(16);
 			foreach (e : list)
 			{
-				if (!elements.contains(e.a)) elements.append(e.a);
-				if (!elements.contains(e.b)) elements.append(e.b);
+				if (!elements.contains(e.a)) elements.push(e.a);
+				if (!elements.contains(e.b)) elements.push(e.b);
 			}
 			// If we don't have it - keep looking.
 			if (elements.len() != 2) continue;

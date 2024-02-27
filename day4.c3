@@ -69,7 +69,7 @@ fn long part2()
 	// Store all the matches in a single sweep.
 	while (try line = io::treadline(&f))
 	{
-		matches.append(matches_for_line(line));
+		matches.push(matches_for_line(line));
 	}
 	// Create an array to store the cards, where zero = 1 card
 	int[] cards = mem::temp_alloc_array(int, matches.len());

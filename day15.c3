@@ -117,7 +117,7 @@ fn long part2(char[] data)
 				}
 				// Otherwise, we append the new lens at the end of the
 				// list.
-				boxes[current].append({ name, focal_length });
+				boxes[current].push({ name, focal_length });
 			case 'a'..'z':
 				// For a-z this is a name
 				current = ((current + c) * 17) & 0xFF;

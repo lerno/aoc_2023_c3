@@ -56,7 +56,7 @@ fn int scan_schematic()
 	StringList list;
 	list.temp_init();
 	// Read every line into a dynamic list.
-	while (try line = io::treadline(&f)) list.append(line);
+	while (try line = io::treadline(&f)) list.push(line);
 	// I prefer using the view, but the list can be used as
 	// well.
 	String[] schematic = list.array_view();
@@ -136,5 +136,5 @@ fn void multiply_gear(isz[<2>] location, int value)
 		}
 	}
 	// First time this gear is detected, store location, count and ratio.
-	gear_list.append({ location, 1, value });
+	gear_list.push({ location, 1, value });
 }
